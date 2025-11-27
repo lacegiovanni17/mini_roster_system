@@ -1,0 +1,34 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreateAssignment1764113273423 = void 0;
+class CreateAssignment1764113273423 {
+    async up(queryRunner) {
+        await queryRunner.query(`
+            CREATE TABLE "assignment" (
+                "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
+                "userId" uuid NOT NULL,
+                "shiftId" uuid NOT NULL,
+                "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
+                "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
+                CONSTRAINT "PK_444444444444444444444444444" PRIMARY KEY ("id")
+            )
+        `);
+        await queryRunner.query(`
+            ALTER TABLE "assignment" 
+            ADD CONSTRAINT "FK_assignment_user" 
+            FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION
+        `);
+        await queryRunner.query(`
+            ALTER TABLE "assignment" 
+            ADD CONSTRAINT "FK_assignment_shift" 
+            FOREIGN KEY ("shiftId") REFERENCES "shift"("id") ON DELETE CASCADE ON UPDATE NO ACTION
+        `);
+    }
+    async down(queryRunner) {
+        await queryRunner.query(`ALTER TABLE "assignment" DROP CONSTRAINT "FK_assignment_shift"`);
+        await queryRunner.query(`ALTER TABLE "assignment" DROP CONSTRAINT "FK_assignment_user"`);
+        await queryRunner.query(`DROP TABLE "assignment"`);
+    }
+}
+exports.CreateAssignment1764113273423 = CreateAssignment1764113273423;
+//# sourceMappingURL=1764113273423-CreateAssignment.js.map

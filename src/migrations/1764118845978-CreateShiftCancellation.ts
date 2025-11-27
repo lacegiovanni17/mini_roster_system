@@ -10,6 +10,7 @@ export class CreateShiftCancellation1764118845978 implements MigrationInterface 
                 "shiftId" uuid NOT NULL,
                 "reason" character varying NOT NULL,
                 "cancelledAt" TIMESTAMP NOT NULL DEFAULT now(),
+                "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
                 CONSTRAINT "PK_shift_cancellation" PRIMARY KEY ("id"),
                 CONSTRAINT "FK_cancellation_user" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE,
                 CONSTRAINT "FK_cancellation_shift" FOREIGN KEY ("shiftId") REFERENCES "shift"("id") ON DELETE CASCADE

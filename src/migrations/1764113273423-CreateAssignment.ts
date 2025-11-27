@@ -8,6 +8,8 @@ export class CreateAssignment1764113273423 implements MigrationInterface {
                 "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
                 "userId" uuid NOT NULL,
                 "shiftId" uuid NOT NULL,
+                "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
+                "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
                 CONSTRAINT "PK_444444444444444444444444444" PRIMARY KEY ("id")
             )
         `);
