@@ -1,0 +1,256 @@
+# Mini Roster System - Backend
+
+A simplified roster/shift scheduling system built with **NestJS**, **GraphQL**, **TypeORM**, and **PostgreSQL**.
+
+## Features
+
+- **User Management**: Create and manage users with roles (admin/user)
+- **Shift Management**: Create, view, and manage shifts with time slots
+- **Assignment Management**: Assign users to shifts
+- **Pagination & Filtering**: All list queries support pagination and filtering
+- **GraphQL API**: Code-first GraphQL schema with Apollo Server
+- **Database Migrations**: TypeORM migrations for schema management
+
+## Tech Stack
+
+- **NestJS** - Progressive Node.js framework
+- **GraphQL** - Query language with Apollo Server
+- **TypeORM** - ORM for TypeScript and JavaScript
+- **PostgreSQL** - Relational database
+- **TypeScript** - Type-safe development
+
+## Prerequisites
+
+- Node.js (v18+)
+- PostgreSQL (v14+)
+- npm or yarn
+
+## Setup Instructions
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure Environment
+
+Create a `.env` file in the root directory:
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+DB_NAME=roster_system
+```
+
+### 3. Create Database
+
+```bash
+createdb roster_system
+```
+
+Or using psql:
+
+```sql
+CREATE DATABASE roster_system;
+```
+
+### 4. Run Migrations
+
+```bash
+npm run migration:run
+```
+
+### 5. Seed Database (Optional)
+
+```bash
+npm run seed
+```
+
+### 6. Start Development Server
+
+```bash
+npm run start:dev
+```
+
+The GraphQL Playground will be available at: `http://localhost:3000/graphql`
+
+## Available Scripts
+
+- `npm run start` - Start production server
+- `npm run start:dev` - Start development server with watch mode
+- `npm run build` - Build for production
+- `npm run migration:create -- ./src/migrations/MigrationName` - Create new migration
+- `npm run migration:generate` - Generate migration from entities
+- `npm run migration:run` - Run pending migrations
+- `npm run migration:revert` - Revert last migration
+- `npm run seed` - Seed database with sample data
+
+## GraphQL API
+
+### Queries
+
+#### Users
+
+```graphql
+query {
+  users(page: 1, limit: 10, filter: { role: "admin" }) {
+    items {
+      id
+      name
+      email
+      role
+    }
+    total
+  }
+}
+```
+
+#### Shifts
+
+```graphql
+query {
+  shifts(page: 1, limit: 10, filter: { isOpen: true }) {
+    items {
+      id
+      startTime
+      endTime
+      isOpen
+    }
+    total
+  }
+}
+
+query {
+  openShifts(page: 1, limit: 10) {
+    items {
+      id
+      startTime
+      endTime
+    }
+    total
+  }
+}
+```
+
+#### Assignments
+
+```graphql
+query {
+  assignments(page: 1, limit: 10, filter: { userId: "user-id" }) {
+    items {
+      id
+      user {
+        name
+      }
+      shift {
+        startTime
+        endTime
+      }
+    }
+    total
+  }
+}
+```
+
+### Mutations
+
+#### Create User
+
+```graphql
+mutation {
+  createUser(createUserInput: {
+    name: "John Doe"
+    email: "john@example.com"
+    role: "user"
+  }) {
+    id
+    name
+    email
+  }
+}
+```
+
+#### Create Shift
+
+```graphql
+mutation {
+  createShift(createShiftInput: {
+    startTime: "2025-11-26T08:00:00Z"
+    endTime: "2025-11-26T16:00:00Z"
+    isOpen: true
+  }) {
+    id
+    startTime
+    endTime
+  }
+}
+```
+
+#### Create Assignment
+
+```graphql
+mutation {
+  createAssignment(createAssignmentInput: {
+    userId: "user-id"
+    shiftId: "shift-id"
+  }) {
+    id
+    user {
+      name
+    }
+    shift {
+      startTime
+    }
+  }
+}
+```
+
+#### Remove Assignment
+
+```graphql
+mutation {
+  removeAssignment(id: "assignment-id")
+}
+```
+
+## Database Schema
+
+See the schema diagram in the root README.
+
+## Project Structure
+
+```
+src/
+├── assignments/          # Assignment module
+│   ├── dto/             # Data transfer objects
+│   ├── assignment.entity.ts
+│   ├── assignments.service.ts
+│   ├── assignments.resolver.ts
+│   └── assignments.module.ts
+├── shifts/              # Shift module
+│   ├── dto/
+│   ├── shift.entity.ts
+│   ├── shifts.service.ts
+│   ├── shifts.resolver.ts
+│   └── shifts.module.ts
+├── users/               # User module
+│   ├── dto/
+│   ├── user.entity.ts
+│   ├── users.service.ts
+│   ├── users.resolver.ts
+│   └── users.module.ts
+├── common/              # Common utilities
+│   ├── pagination/      # Pagination DTOs
+│   └── utils/           # Helper functions
+├── migrations/          # Database migrations
+├── app.module.ts        # Root module
+├── data-source.ts       # TypeORM data source
+└── main.ts              # Application entry point
+```
+
+## License
+
+UNLICENSED
