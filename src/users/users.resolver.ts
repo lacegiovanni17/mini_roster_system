@@ -18,7 +18,7 @@ export class UsersResolver {
   @Query(() => PaginatedUser, { name: "users" })
   findAll(
     @Args() paginationArgs: PaginationArgs,
-    @Args("filter", { nullable: true }) filter: UserFilterInput = {}
+    @Args("filter", { nullable: true }) filter: UserFilterInput = {},
   ) {
     return this.usersService.findAll(paginationArgs, filter);
   }
