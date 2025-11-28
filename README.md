@@ -77,6 +77,13 @@ npm run start:dev
 
 The GraphQL Playground will be available at: `http://localhost:3000/graphql`
 
+
+
+### Database Picture with PgAdmin4 and Postico
+
+<img width="1409" height="778" alt="Screenshot 2025-11-28 at 22 15 58" src="https://github.com/user-attachments/assets/e692d056-c2ad-4ec9-b55a-16099644496e" />
+
+
 ## Available Scripts
 
 - `npm run start` - Start production server
