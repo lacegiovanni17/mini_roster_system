@@ -96,6 +96,8 @@ The GraphQL Playground will be available at: `http://localhost:3000/graphql`
 - `npm run seed` - Seed database with sample data
 
 ## GraphQL API
+<img width="1386" height="852" alt="Screenshot 2025-11-28 at 22 52 59" src="https://github.com/user-attachments/assets/cc229661-e67d-4072-b5fb-ed9be4d1b7a6" />
+
 
 ### Queries
 
