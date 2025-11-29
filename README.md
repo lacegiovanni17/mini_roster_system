@@ -259,6 +259,7 @@ src/
 ├── data-source.ts       # TypeORM data source
 └── main.ts              # Application entry point
 ```
+<img width="1414" height="865" alt="Screenshot 2025-11-29 at 21 16 45" src="https://github.com/user-attachments/assets/865f981e-d8ca-476d-afd0-7c4d395a8104" />
 
 ## License
 
