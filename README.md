@@ -2,6 +2,23 @@
 
 A simplified roster/shift scheduling system built with **NestJS**, **GraphQL**, **TypeORM**, and **PostgreSQL**.
 
+## About 
+* 👋 Hi, I’m Chidike Henry
+* 😎 I’m a fullstack developer
+* 💻 This is a fullstack movie tracker project built with ReactJS, C# and RooCode AI. 
+* 💞️ I’m looking to collaborate on AI, C#, .Net mvc and ReactJS projects
+* 📫 How to reach me chidike.henry@gmail.com
+
+## Technologies Used
+* NestJS
+* GraphQl
+* TypeORM
+* PostgreSQL
+* Github
+* Typescript
+* Git
+* Graphql test endpoints
+
 ## Features
 
 - **User Management**: Create and manage users with roles (admin/user)
@@ -23,7 +40,7 @@ A simplified roster/shift scheduling system built with **NestJS**, **GraphQL**, 
 
 - Node.js (v18+)
 - PostgreSQL (v14+)
-- npm or yarn
+- npm
 
 ## Setup Instructions
 
